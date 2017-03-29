@@ -1,6 +1,6 @@
 {
-  "name": "slack-public-url",
-  "version": "0.0.0",
+  "name": "get-public-url-from-slack",
+  "version": "0.0.1",
   "description": "Get public URL from slack",
   "main": "index.js",
   "scripts": {
