@@ -21,17 +21,19 @@ const httpGet = url => new Promise((resolve) => {
   });
 });
 
-const getPublicUrl = async (privateUrl, token) => {
+const getPublicUrl = (privateUrl, token) => {
   const options = { token, file: getFileName(privateUrl) };
   const url = composeSharedPublicUrlWith(options);
 
-  const response = await httpGet(url);
+  const promisedResponse = httpGet(url).then((response) => {
+    if (response.ok) {
+      return response.file.permalink_public;
+    }
 
-  if (response.ok) {
-    return response.file.permalink_public;
-  }
+    return '';
+  });
 
-  return '';
+  return Promise.resolve(promisedResponse);
 };
 
 module.exports = getPublicUrl;
