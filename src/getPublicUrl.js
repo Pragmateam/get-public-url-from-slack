@@ -21,6 +21,8 @@ const getPublicUrl = async (privateUrl, token) => {
   if (response.data.ok) {
     return response.data.file['permalink_public'];
   } else {
+    console.error(response.data.error);
+
     return '';
   }
 };
