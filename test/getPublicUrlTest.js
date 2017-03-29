@@ -19,7 +19,7 @@ describe('getPublicUrl', () => {
         }
       });
 
-    const publicUrl = await getPublicUrl(privateURL, { token, file });
+    const publicUrl = await getPublicUrl(privateURL, token);
 
     expect(publicUrl).to.eql('https:slack-files.com/T024BE7LD-F024BERPE-8004f909b1');
   });
@@ -33,7 +33,7 @@ describe('getPublicUrl', () => {
         "error": "file_not_found"
       });
 
-    const publicUrl = await getPublicUrl(privateURL, { token, file });
+    const publicUrl = await getPublicUrl(privateURL, token);
 
     expect(publicUrl).to.eql('');
   });
@@ -49,7 +49,7 @@ describe('getPublicUrl', () => {
         "error": "invalid_auth"
       });
 
-    const publicUrl = await getPublicUrl(privateURL, { token, file });
+    const publicUrl = await getPublicUrl(privateURL, token);
 
     expect(publicUrl).to.eql('');
   });
@@ -65,7 +65,7 @@ describe('getPublicUrl', () => {
         "error": "invalid_auth"
       });
 
-    const publicUrl = await getPublicUrl(privateURL, { token, file });
+    const publicUrl = await getPublicUrl(privateURL, token);
 
     expect(publicUrl).to.eql('');
   });
