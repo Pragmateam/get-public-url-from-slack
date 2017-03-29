@@ -1,4 +1,4 @@
-const axios = require('axios');
+const https = require('https');
 const querystring = require('querystring');
 
 const getFileName = (url) => {
@@ -14,17 +14,25 @@ const getSharedPublicUrlCommand = (args) => {
   return `${host}/api/${command}?${querystring.stringify(args)}`;
 };
 
-const getPublicUrl = async (privateUrl, token) => {
+const getPublicUrl = (privateUrl, token) => {
   const options = { token, file: getFileName(privateUrl) };
-  const response = await axios.get(getSharedPublicUrlCommand(options));
 
-  if (response.data.ok) {
-    return response.data.file['permalink_public'];
-  } else {
-    console.error(response.data.error);
+  return new Promise( (resolve) => {
+    https.get(getSharedPublicUrlCommand(options), (response) => {
+      response.setEncoding('utf8');
+      response.on('data', (data) => {
+        const json = JSON.parse(data);
 
-    return '';
-  }
+        if (json.ok) {
+          return resolve(json.file['permalink_public']);
+        } else {
+          console.error(json.error);
+
+          return resolve('');
+        }
+      });
+    });
+  });
 };
 
 module.exports = getPublicUrl;
