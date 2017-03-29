@@ -1,0 +1,32 @@
+{
+  "name": "slack-public-url",
+  "version": "0.0.0",
+  "description": "Get public URL from slack",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "slack",
+    "public",
+    "url",
+    "api"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.18.0",
+    "eslint-config-airbnb-base": "^11.1.2",
+    "eslint-config-standard": "^7.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^2.1.1",
+    "mocha": "^3.2.0",
+    "nock": "^9.0.10"
+  },
+  "dependencies": {
+    "axios": "^0.15.3"
+  }
+}
