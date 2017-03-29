@@ -18,9 +18,11 @@ const getPublicUrl = async (privateUrl, token) => {
   const options = { token, file: getFileName(privateUrl) };
   const response = await axios.get(getSharedPublicUrlCommand(options));
 
-  if (!response.data.ok) return '';
-
-  return response.data.file['permalink_public'];
+  if (response.data.ok) {
+    return response.data.file['permalink_public'];
+  } else {
+    return '';
+  }
 };
 
 module.exports = getPublicUrl;
