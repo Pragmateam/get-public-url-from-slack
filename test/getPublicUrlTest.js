@@ -37,4 +37,36 @@ describe('getPublicUrl', () => {
 
     expect(publicUrl).to.eql('');
   });
+
+  it('returns empty when token is invalid', async () => {
+    const token = 'invalid token';
+
+    const response = nock('https://slack.com')
+      .get('/api/files.sharedPublicURL')
+      .query({ token, file })
+      .reply(200, {
+        "ok": false,
+        "error": "invalid_auth"
+      });
+
+    const publicUrl = await getPublicUrl(privateURL, { token, file });
+
+    expect(publicUrl).to.eql('');
+  });
+
+  it('returns empty when token is absent', async () => {
+    const token = '';
+
+    const response = nock('https://slack.com')
+      .get('/api/files.sharedPublicURL')
+      .query({ token, file })
+      .reply(200, {
+        "ok": false,
+        "error": "invalid_auth"
+      });
+
+    const publicUrl = await getPublicUrl(privateURL, { token, file });
+
+    expect(publicUrl).to.eql('');
+  });
 });
