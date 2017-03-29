@@ -7,32 +7,31 @@ const getFileName = (url) => {
   return parts[parts.length - 2];
 };
 
-const getSharedPublicUrlCommand = (args) => {
+const composeSharedPublicUrlWith = (args) => {
   const host = 'https://slack.com';
   const command = 'files.sharedPublicURL';
 
   return `${host}/api/${command}?${querystring.stringify(args)}`;
 };
 
-const getPublicUrl = (privateUrl, token) => {
-  const options = { token, file: getFileName(privateUrl) };
-
-  return new Promise( (resolve) => {
-    https.get(getSharedPublicUrlCommand(options), (response) => {
-      response.setEncoding('utf8');
-      response.on('data', (data) => {
-        const json = JSON.parse(data);
-
-        if (json.ok) {
-          return resolve(json.file['permalink_public']);
-        } else {
-          console.error(json.error);
-
-          return resolve('');
-        }
-      });
-    });
+const httpGet = url => new Promise((resolve) => {
+  https.get(url, (response) => {
+    response.setEncoding('utf8');
+    response.on('data', data => resolve(JSON.parse(data)));
   });
+});
+
+const getPublicUrl = async (privateUrl, token) => {
+  const options = { token, file: getFileName(privateUrl) };
+  const url = composeSharedPublicUrlWith(options);
+
+  const response = await httpGet(url);
+
+  if (response.ok) {
+    return response.file.permalink_public;
+  }
+
+  return '';
 };
 
 module.exports = getPublicUrl;

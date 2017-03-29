@@ -13,10 +13,10 @@ describe('getPublicUrl', () => {
       .get('/api/files.sharedPublicURL')
       .query({ token, file })
       .reply(200, {
-        "ok": true,
-        "file": {
-          "permalink_public": "https:slack-files.com/T024BE7LD-F024BERPE-8004f909b1"
-        }
+        ok: true,
+        file: {
+          permalink_public: 'https:slack-files.com/T024BE7LD-F024BERPE-8004f909b1',
+        },
       });
 
     const publicUrl = await getPublicUrl(privateURL, token);
@@ -29,8 +29,8 @@ describe('getPublicUrl', () => {
       .get('/api/files.sharedPublicURL')
       .query({ token, file })
       .reply(200, {
-        "ok": false,
-        "error": "file_not_found"
+        ok: false,
+        error: 'file_not_found',
       });
 
     const publicUrl = await getPublicUrl(privateURL, token);
@@ -45,8 +45,8 @@ describe('getPublicUrl', () => {
       .get('/api/files.sharedPublicURL')
       .query({ token, file })
       .reply(200, {
-        "ok": false,
-        "error": "invalid_auth"
+        ok: false,
+        error: 'invalid_auth',
       });
 
     const publicUrl = await getPublicUrl(privateURL, token);
@@ -61,8 +61,8 @@ describe('getPublicUrl', () => {
       .get('/api/files.sharedPublicURL')
       .query({ token, file })
       .reply(200, {
-        "ok": false,
-        "error": "invalid_auth"
+        ok: false,
+        error: 'invalid_auth',
       });
 
     const publicUrl = await getPublicUrl(privateURL, token);
