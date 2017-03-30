@@ -1,5 +1,8 @@
 # get-public-url-from-slack
 
+[![Build
+Status](https://travis-ci.org/Pragmateam/get-public-url-from-slack.svg?branch=master)](https://travis-ci.org/Pragmateam/get-public-url-from-slack)
+
 Given a private url from slack, this code will return it's public link.
 
 More about Slack Shared Public Url API [here](https://api.slack.com/methods/files.sharedPublicURL)
