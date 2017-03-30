@@ -69,4 +69,17 @@ describe('getPublicUrl', () => {
 
     expect(publicUrl).to.eql('');
   });
+
+  it('returns error message when something bad happens with slack API request', async () => {
+    const emptyToken = '';
+
+    nock('https://slack.com')
+      .get('/api/files.sharedPublicURL')
+      .query({ token: emptyToken, file })
+      .replyWithError({ ok: false, error: 'Internal Server Error' });
+
+    const publicUrl = await getPublicUrl(privateURL, emptyToken);
+
+    expect(publicUrl).to.eql({ ok: false, error: 'Internal Server Error' });
+  });
 });

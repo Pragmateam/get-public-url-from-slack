@@ -1,12 +1,15 @@
 const getPublicUrl = require('./src/getPublicUrl');
 
 exports.handler = (event, context, callback) => {
-  const privateUrl = event.privateUrl;
-  const token = process.env.TOKEN;
+  const privateUrl = event.url;
+  const slackAPIToken = process.env.SLACK_API_TOKEN;
 
-  if (!token) throw new Error('Variable TOKEN is not set');
+  console.info('privateUrl: ', privateUrl);
+  console.info('slack API token: ', slackAPIToken.replace(/[^-]/g, '*'));
 
-  getPublicUrl(privateUrl, token)
+  if (!slackAPIToken) throw new Error('Missing Slack API token');
+
+  getPublicUrl(privateUrl, slackAPIToken)
       .then(response => callback(null, response))
       .catch(err => console.error(err));
 };
