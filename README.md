@@ -15,7 +15,7 @@ $ npm install
 The entry point (index.js) has been optimized to run under aws lambda, but there
 are more to come in the future like:
 
-1. Ability to run locally (e.g. [locally](https://github.com/atlassian/localstack))
+1. Ability to run locally (e.g. [localstack](https://github.com/atlassian/localstack))
 2. Automatic deploy to AWS Lambda (e.g. [terraform](https://www.terraform.io))
 3. Automatic infrastructure setup (e.g. [terraform](https://www.terraform.io))
 
