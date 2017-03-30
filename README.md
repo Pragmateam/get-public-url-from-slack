@@ -10,17 +10,26 @@ More about Slack Shared Public Url API [here](https://api.slack.com/methods/file
 $ npm install
 ```
 
-## Running
+### Running
 
-The entry point (index.js) is optimized to run under aws lambda, so more to come
-in the future like:
+The entry point (index.js) has been optimized to run under aws lambda, but there
+are more to come in the future like:
 
-1. Ability to run locally
-2. Automatic deploy to AWS Lambda
-3. Automatic infrastructure setup
+1. Ability to run locally (e.g. [locally](https://github.com/atlassian/localstack))
+2. Automatic deploy to AWS Lambda (e.g. [terraform](https://www.terraform.io))
+3. Automatic infrastructure setup (e.g. [terraform](https://www.terraform.io))
 
-## Testing
+### Testing
 
 ```
 $ npm test
 ```
+
+### Contributing
+
+There are many ways to contribute, such as fixing opened issues, creating them
+or suggesting new ideas.
+Either way will be very appreciated.
+
+get-public-url-from-slack is released under the [MIT
+License](http://www.opensource.org/licenses/MIT).
