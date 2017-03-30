@@ -2,7 +2,7 @@
 
 Given a private url from slack, this code will return it's public link.
 
-More info [here](https://api.slack.com/methods/files.sharedPublicURL)
+More about Slack Shared Public Url API [here](https://api.slack.com/methods/files.sharedPublicURL)
 
 ## Setup
 
@@ -12,12 +12,12 @@ $ npm install
 
 ## Running
 
-1. Set your Slack application token as an environment variable (e.g. TOKEN=foo)
-2. Run the command below passing as argument the private url from Slack
+The entry point (index.js) is optimized to run under aws lambda, so more to come
+in the future like:
 
-```
-$ npm start https://pragmateam.slack.com/files/alabeduarte/F4RT14PC6/test.png
-```
+1. Ability to run locally
+2. Automatic deploy to AWS Lambda
+3. Automatic infrastructure setup
 
 ## Testing
 
