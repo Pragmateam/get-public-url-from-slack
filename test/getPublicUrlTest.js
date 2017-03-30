@@ -9,7 +9,7 @@ describe('getPublicUrl', () => {
   const privateURL = `https://slack.com/files/${file}/image.jpg`;
 
   it('returns public url', async () => {
-    const response = nock('https://slack.com')
+    nock('https://slack.com')
       .get('/api/files.sharedPublicURL')
       .query({ token, file })
       .reply(200, {
@@ -25,7 +25,7 @@ describe('getPublicUrl', () => {
   });
 
   it('returns empty when file not found', async () => {
-    const response = nock('https://slack.com')
+    nock('https://slack.com')
       .get('/api/files.sharedPublicURL')
       .query({ token, file })
       .reply(200, {
@@ -39,33 +39,33 @@ describe('getPublicUrl', () => {
   });
 
   it('returns empty when token is invalid', async () => {
-    const token = 'invalid token';
+    const invalidToken = 'invalid token';
 
-    const response = nock('https://slack.com')
+    nock('https://slack.com')
       .get('/api/files.sharedPublicURL')
-      .query({ token, file })
+      .query({ token: invalidToken, file })
       .reply(200, {
         ok: false,
         error: 'invalid_auth',
       });
 
-    const publicUrl = await getPublicUrl(privateURL, token);
+    const publicUrl = await getPublicUrl(privateURL, invalidToken);
 
     expect(publicUrl).to.eql('');
   });
 
   it('returns empty when token is absent', async () => {
-    const token = '';
+    const emptyToken = '';
 
-    const response = nock('https://slack.com')
+    nock('https://slack.com')
       .get('/api/files.sharedPublicURL')
-      .query({ token, file })
+      .query({ token: emptyToken, file })
       .reply(200, {
         ok: false,
         error: 'invalid_auth',
       });
 
-    const publicUrl = await getPublicUrl(privateURL, token);
+    const publicUrl = await getPublicUrl(privateURL, emptyToken);
 
     expect(publicUrl).to.eql('');
   });

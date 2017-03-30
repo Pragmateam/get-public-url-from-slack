@@ -4,8 +4,8 @@
   "description": "Get public URL from slack",
   "main": "index.js",
   "scripts": {
-    "autofix-lint": "eslint src/** --fix",
-    "pretest": "eslint src/**",
+    "autofix-lint": "eslint test/** src/** --fix",
+    "pretest": "eslint test/** src/**",
     "test": "mocha --recursive",
     "start": "node index.js"
   },
