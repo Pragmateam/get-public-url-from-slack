@@ -8,7 +8,7 @@ describe('getPublicUrl', () => {
   const file = 'F1234567890';
   const privateURL = `https://slack.com/files/${file}/image.jpg`;
 
-  it('returns public url', async () => {
+  it('returns public url', () => {
     nock('https://slack.com')
       .get('/api/files.sharedPublicURL')
       .query({ token, file })
@@ -19,12 +19,12 @@ describe('getPublicUrl', () => {
         },
       });
 
-    const publicUrl = await getPublicUrl(privateURL, token);
-
-    expect(publicUrl).to.eql('https:slack-files.com/T024BE7LD-F024BERPE-8004f909b1');
+    getPublicUrl(privateURL, token).then((publicUrl) => {
+      expect(publicUrl).to.eql('https:slack-files.com/T024BE7LD-F024BERPE-8004f909b1');
+    });
   });
 
-  it('returns empty when file not found', async () => {
+  it('returns empty when file not found', () => {
     nock('https://slack.com')
       .get('/api/files.sharedPublicURL')
       .query({ token, file })
@@ -33,12 +33,12 @@ describe('getPublicUrl', () => {
         error: 'file_not_found',
       });
 
-    const publicUrl = await getPublicUrl(privateURL, token);
-
-    expect(publicUrl).to.eql('');
+    getPublicUrl(privateURL, token).then((publicUrl) => {
+      expect(publicUrl).to.eql('');
+    });
   });
 
-  it('returns empty when token is invalid', async () => {
+  it('returns empty when token is invalid', () => {
     const invalidToken = 'invalid token';
 
     nock('https://slack.com')
@@ -49,12 +49,12 @@ describe('getPublicUrl', () => {
         error: 'invalid_auth',
       });
 
-    const publicUrl = await getPublicUrl(privateURL, invalidToken);
-
-    expect(publicUrl).to.eql('');
+    getPublicUrl(privateURL, invalidToken).then((publicUrl) => {
+      expect(publicUrl).to.eql('');
+    });
   });
 
-  it('returns empty when token is absent', async () => {
+  it('returns empty when token is absent', () => {
     const emptyToken = '';
 
     nock('https://slack.com')
@@ -65,12 +65,12 @@ describe('getPublicUrl', () => {
         error: 'invalid_auth',
       });
 
-    const publicUrl = await getPublicUrl(privateURL, emptyToken);
-
-    expect(publicUrl).to.eql('');
+    getPublicUrl(privateURL, emptyToken).then((publicUrl) => {
+      expect(publicUrl).to.eql('');
+    });
   });
 
-  it('returns error message when something bad happens with slack API request', async () => {
+  it('returns error message when something bad happens with slack API request', () => {
     const emptyToken = '';
 
     nock('https://slack.com')
@@ -78,8 +78,8 @@ describe('getPublicUrl', () => {
       .query({ token: emptyToken, file })
       .replyWithError({ ok: false, error: 'Internal Server Error' });
 
-    const publicUrl = await getPublicUrl(privateURL, emptyToken);
-
-    expect(publicUrl).to.eql({ ok: false, error: 'Internal Server Error' });
+    getPublicUrl(privateURL, emptyToken).then((publicUrl) => {
+      expect(publicUrl).to.eql({ ok: false, error: 'Internal Server Error' });
+    });
   });
 });
