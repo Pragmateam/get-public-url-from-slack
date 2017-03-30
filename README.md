@@ -31,5 +31,7 @@ There are many ways to contribute, such as fixing opened issues, creating them
 or suggesting new ideas.
 Either way will be very appreciated.
 
+### License
+
 get-public-url-from-slack is released under the [MIT
 License](http://www.opensource.org/licenses/MIT).
