@@ -7,7 +7,7 @@ Given a private url from slack, this code will return it's public link.
 
 More about Slack Shared Public Url API [here](https://api.slack.com/methods/files.sharedPublicURL)
 
-## Setup
+### Setup
 
 ```
 $ npm install
