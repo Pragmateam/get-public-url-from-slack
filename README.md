@@ -10,7 +10,7 @@ More about Slack Shared Public Url API [here](https://api.slack.com/methods/file
 ### Setup
 
 ```
-$ npm install
+$ make install
 ```
 
 ### Running
@@ -35,13 +35,30 @@ $ npm start {PRIVATE_URL}
 The entry point (index.js) has been optimized to run under aws lambda, so there
 are more to come in the future like:
 
-1. Automatic deploy to AWS Lambda (e.g. [terraform](https://www.terraform.io))
-2. Automatic infrastructure setup (e.g. [terraform](https://www.terraform.io))
+1. Automatic trigger the lambda from AWS API Gateway using [terraform](https://www.terraform.io)
 
 ### Testing
 
 ```
-$ npm test
+$ make test
+```
+
+### Deploy
+
+Assuming you have your AWS credentials [in
+place](https://www.terraform.io/intro/getting-started/build.html) you can just
+call `make deploy`.
+
+Before you go, you must install terraform.
+
+```
+$ make terraform-install
+```
+
+Then you should be ready to deploy your lambda:
+
+```
+$ make deploy
 ```
 
 ### Contributing
