@@ -15,12 +15,28 @@ $ npm install
 
 ### Running
 
-The entry point (index.js) has been optimized to run under aws lambda, but there
+Ensure you have a valid [Slack API
+Token](https://api.slack.com/custom-integrations/legacy-tokens) on your environment variable set:
+
+```
+export SLACK_API_TOKEN=****-**********-************-************-*************
+```
+
+Then follow the steps below:
+
+1. Upload a new image on your slack.
+2. Get it's private url (probably with the mouse right button)
+3. Run:
+
+```
+$ npm start {PRIVATE_URL}
+```
+
+The entry point (index.js) has been optimized to run under aws lambda, so there
 are more to come in the future like:
 
-1. Ability to run locally (e.g. [localstack](https://github.com/atlassian/localstack))
-2. Automatic deploy to AWS Lambda (e.g. [terraform](https://www.terraform.io))
-3. Automatic infrastructure setup (e.g. [terraform](https://www.terraform.io))
+1. Automatic deploy to AWS Lambda (e.g. [terraform](https://www.terraform.io))
+2. Automatic infrastructure setup (e.g. [terraform](https://www.terraform.io))
 
 ### Testing
 

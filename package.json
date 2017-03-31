@@ -1,13 +1,13 @@
 {
   "name": "get-public-url-from-slack",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Get public URL from slack",
   "main": "index.js",
   "scripts": {
     "autofix-lint": "eslint test/** src/** --fix",
     "pretest": "eslint test/** src/**",
     "test": "mocha --recursive",
-    "start": "node index.js"
+    "start": "lambda-local -l index.js -h handler -e event-samples/privateUrl.js"
   },
   "keywords": [
     "slack",
@@ -25,9 +25,9 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^2.1.1",
+    "lambda-local": "^1.4.2",
     "mocha": "^3.2.0",
     "nock": "^9.0.10"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
