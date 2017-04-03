@@ -1,12 +1,12 @@
 provider "aws" {
-  region  = "ap-southeast-2"
+  region = "ap-southeast-2"
 }
 
 terraform {
   backend "s3" {
     bucket = "pragmateam-terraform-state-prod"
-    key    = "terraform.tfstate"
-    region  = "ap-southeast-2"
+    key = "terraform.tfstate"
+    region= "ap-southeast-2"
   }
 }
 
