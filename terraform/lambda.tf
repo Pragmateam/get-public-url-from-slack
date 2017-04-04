@@ -30,6 +30,34 @@ resource "aws_iam_role" "iam_for_get_public_url_lambda" {
 EOF
 }
 
+resource "aws_iam_role_policy" "get_public_url_role_policy" {
+  name = "get_public_url_role_policy"
+  role = "${aws_iam_role.iam_for_get_public_url_lambda.id}"
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "logs:CreateLogGroup",
+      "Resource": "arn:aws:logs:ap-southeast-2:${data.aws_caller_identity.current.account_id}:*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": [
+        "arn:aws:logs:ap-southeast-2:${data.aws_caller_identity.current.account_id}:log-group:/aws/lambda/${aws_lambda_function.get_public_url_lambda.function_name}:*"
+      ]
+    }
+  ]
+}
+EOF
+}
+
 variable "slack_api_token" {}
 
 resource "aws_s3_bucket" "pragmateam_lambdas_bucket" {
