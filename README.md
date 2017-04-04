@@ -32,18 +32,13 @@ Then follow the steps below:
 $ npm start {PRIVATE_URL}
 ```
 
-The entry point (index.js) has been optimized to run under aws lambda, so there
-are more to come in the future like:
-
-1. Automatic trigger the lambda from AWS API Gateway using [terraform](https://www.terraform.io)
-
 ### Testing
 
 ```
 $ make test
 ```
 
-### Deploy
+### Deploy to AWS Lambda + API Gateway
 
 Assuming you have your AWS credentials [in
 place](https://www.terraform.io/intro/getting-started/build.html) you can just
