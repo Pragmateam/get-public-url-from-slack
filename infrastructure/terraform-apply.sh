@@ -4,7 +4,7 @@ set -e
 
 root_dir=`pwd`;
 
-cd terraform
+cd infrastructure
 terraform get
 terraform apply -var slack_api_token=${SLACK_API_TOKEN}
 

@@ -14,12 +14,12 @@ deploy:
 	$(MAKE) terraform-apply
 
 terraform-install:
-	./terraform/terraform-install.sh
+	./infrastructure/terraform-install.sh
 
 terraform-apply:
-	./terraform/terraform-apply.sh
+	./infrastructure/terraform-apply.sh
 
 terraform-destroy:
-	./terraform/terraform-destroy.sh
+	./infrastructure/terraform-destroy.sh
 
 .PHONY: install test build deploy terraform-install terraform-apply terraform-destroy

@@ -1,15 +1,3 @@
-provider "aws" {
-  region = "ap-southeast-2"
-}
-
-terraform {
-  backend "s3" {
-    bucket = "pragmateam-terraform-state-prod"
-    key = "terraform.tfstate"
-    region= "ap-southeast-2"
-  }
-}
-
 resource "aws_iam_role" "iam_for_get_public_url_lambda" {
   name = "iam_for_get_public_url_lambda"
 
@@ -41,7 +29,7 @@ resource "aws_iam_role_policy" "get_public_url_role_policy" {
     {
       "Effect": "Allow",
       "Action": "logs:CreateLogGroup",
-      "Resource": "arn:aws:logs:ap-southeast-2:${data.aws_caller_identity.current.account_id}:*"
+      "Resource": "arn:aws:logs:${var.region}:${data.aws_caller_identity.current.account_id}:*"
     },
     {
       "Effect": "Allow",
@@ -50,7 +38,7 @@ resource "aws_iam_role_policy" "get_public_url_role_policy" {
         "logs:PutLogEvents"
       ],
       "Resource": [
-        "arn:aws:logs:ap-southeast-2:${data.aws_caller_identity.current.account_id}:log-group:/aws/lambda/${aws_lambda_function.get_public_url_lambda.function_name}:*"
+        "arn:aws:logs:${var.region}:${data.aws_caller_identity.current.account_id}:log-group:/aws/lambda/${aws_lambda_function.get_public_url_lambda.function_name}:*"
       ]
     }
   ]
