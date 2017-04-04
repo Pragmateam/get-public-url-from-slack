@@ -1,3 +1,6 @@
+variable "slack_api_token" {}
+variable "get_public_url_s3_bucket" {}
+
 resource "aws_iam_role" "iam_for_get_public_url_lambda" {
   name = "iam_for_get_public_url_lambda"
 
@@ -46,15 +49,13 @@ resource "aws_iam_role_policy" "get_public_url_role_policy" {
 EOF
 }
 
-variable "slack_api_token" {}
-
-resource "aws_s3_bucket" "pragmateam_lambdas_bucket" {
-  bucket = "pragmateam-lambdas"
+resource "aws_s3_bucket" "lambdas_bucket" {
+  bucket = "${var.get_public_url_s3_bucket}-lambdas"
   acl = "private"
 }
 
 resource "aws_s3_bucket_object" "get_public_url_object" {
-  bucket = "${aws_s3_bucket.pragmateam_lambdas_bucket.bucket}"
+  bucket = "${aws_s3_bucket.lambdas_bucket.bucket}"
   key = "get_public_url_lambda"
   source = "../get_public_url_lambda.zip"
   etag = "${md5(file("../get_public_url_lambda.zip"))}"
