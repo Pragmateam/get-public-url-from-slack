@@ -1,6 +1,6 @@
 {
   "name": "get-public-url-from-slack",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Get public URL from slack",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,6 @@
     "url",
     "api"
   ],
-  "author": "",
   "license": "MIT",
   "devDependencies": {
     "chai": "^3.5.0",
@@ -28,6 +27,5 @@
     "lambda-local": "^1.4.2",
     "mocha": "^3.2.0",
     "nock": "^9.0.10"
-  },
-  "dependencies": {}
+  }
 }
