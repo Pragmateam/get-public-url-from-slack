@@ -1,5 +1,3 @@
-data "aws_caller_identity" "current" {}
-
 resource "aws_api_gateway_rest_api" "get_public_url_api" {
   name = "get_public_url_from_slack"
   description = "Created by terraform"

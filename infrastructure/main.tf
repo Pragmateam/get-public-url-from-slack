@@ -1,3 +1,5 @@
+data "aws_caller_identity" "current" {}
+
 variable "region" {
   "default" = "ap-southeast-2"
 }
