@@ -17,7 +17,7 @@ provider "aws" {
 # You have to replace the bucket name in order to playaround with terraform
 terraform {
   backend "s3" {
-    bucket = "pragmateam-terraform-state-prod"
+    bucket = "pragmateam-get-public-url-from-slack-terraform-state-prod"
     key = "terraform.tfstate"
     region= "ap-southeast-2"
   }

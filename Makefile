@@ -15,6 +15,10 @@ deploy:
 
 terraform-install:
 	./infrastructure/terraform-install.sh
+	$(MAKE) terraform-init
+
+terraform-init:
+	./infrastructure/terraform-init.sh
 
 terraform-apply:
 	./infrastructure/terraform-apply.sh
