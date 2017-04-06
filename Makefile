@@ -9,8 +9,8 @@ build:
 	zip get_public_url_lambda.zip index.js src/**
 
 deploy:
-	$(MAKE) terraform-destroy
 	$(MAKE) build
+	$(MAKE) terraform-destroy
 	$(MAKE) terraform-apply
 
 terraform-install:
