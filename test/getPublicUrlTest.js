@@ -8,7 +8,7 @@ describe('getPublicUrl', () => {
   const file = 'F1234567890';
   const privateURL = `https://slack.com/files/${file}/image.jpg`;
 
-  it('returns public url', () => {
+  it('returns public url', (done) => {
     nock('https://slack.com')
       .get('/api/files.sharedPublicURL')
       .query({ token, file })
@@ -21,10 +21,12 @@ describe('getPublicUrl', () => {
 
     getPublicUrl(privateURL, token).then((publicUrl) => {
       expect(publicUrl).to.eql('https:slack-files.com/T024BE7LD-F024BERPE-8004f909b1');
-    });
+
+      done();
+    }).catch(err => done(err));
   });
 
-  it('returns empty when file not found', () => {
+  it('returns empty when file not found', (done) => {
     nock('https://slack.com')
       .get('/api/files.sharedPublicURL')
       .query({ token, file })
@@ -35,10 +37,12 @@ describe('getPublicUrl', () => {
 
     getPublicUrl(privateURL, token).then((publicUrl) => {
       expect(publicUrl).to.eql('');
-    });
+
+      done();
+    }).catch(err => done(err));
   });
 
-  it('returns empty when token is invalid', () => {
+  it('returns empty when token is invalid', (done) => {
     const invalidToken = 'invalid token';
 
     nock('https://slack.com')
@@ -51,10 +55,12 @@ describe('getPublicUrl', () => {
 
     getPublicUrl(privateURL, invalidToken).then((publicUrl) => {
       expect(publicUrl).to.eql('');
-    });
+
+      done();
+    }).catch(err => done(err));
   });
 
-  it('returns empty when token is absent', () => {
+  it('returns empty when token is absent', (done) => {
     const emptyToken = '';
 
     nock('https://slack.com')
@@ -67,10 +73,12 @@ describe('getPublicUrl', () => {
 
     getPublicUrl(privateURL, emptyToken).then((publicUrl) => {
       expect(publicUrl).to.eql('');
-    });
+
+      done();
+    }).catch(err => done(err));
   });
 
-  it('returns error message when something bad happens with slack API request', () => {
+  it('returns error message when something bad happens with slack API request', (done) => {
     const emptyToken = '';
 
     nock('https://slack.com')
@@ -80,6 +88,8 @@ describe('getPublicUrl', () => {
 
     getPublicUrl(privateURL, emptyToken).then((publicUrl) => {
       expect(publicUrl).to.eql({ ok: false, error: 'Internal Server Error' });
-    });
+
+      done();
+    }).catch(err => done(err));
   });
 });
