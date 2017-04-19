@@ -1,19 +1,19 @@
+const ApiBuilder = require('claudia-api-builder');
+const api = new ApiBuilder();
+
 const getPublicUrl = require('./src/getPublicUrl');
 
-exports.handler = (event, context, callback) => {
-  console.info('event: ', event);
+module.exports = api;
 
-  const privateUrl = event.url;
+api.get('/public-url', (request) => {
+  const privateUrl = request.queryString.url || request.queryString.text;
   const slackAPIToken = process.env.SLACK_API_TOKEN;
 
   if (!slackAPIToken) throw new Error('Missing Slack API token');
 
-  console.info('slack API token: ', slackAPIToken.replace(/[^-]/g, '*'));
+  console.info('slack API token:', slackAPIToken.replace(/[^-]/g, '*'));
+  console.info('private url:', privateUrl);
 
-  getPublicUrl(privateUrl, slackAPIToken)
-    .then(response => {
-      console.log('response: ', response);
-
-      return callback(null, response);
-    }).catch(err => console.error(err));
-};
+  return getPublicUrl(privateUrl, slackAPIToken)
+    .then(response => response).catch(err => console.error(err));
+}, { success: { contentType: 'text/plain' } });

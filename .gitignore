@@ -1,5 +1,7 @@
 **/node_modules/*
 *.swp
 *.zip
+*.DS_Store
 **/.terraform/**
-.env
+*.env
+*claudia**json
