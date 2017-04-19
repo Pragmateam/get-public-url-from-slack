@@ -21,9 +21,7 @@ describe('getPublicUrl', () => {
 
     getPublicUrl(privateURL, token).then((publicUrl) => {
       expect(publicUrl).to.eql('https:slack-files.com/T024BE7LD-F024BERPE-8004f909b1');
-
-      done();
-    }).catch(err => done(err));
+    }).then(done).catch(err => done(err));
   });
 
   it('returns empty when file not found', (done) => {
@@ -37,9 +35,7 @@ describe('getPublicUrl', () => {
 
     getPublicUrl(privateURL, token).then((publicUrl) => {
       expect(publicUrl).to.eql('');
-
-      done();
-    }).catch(err => done(err));
+    }).then(done).catch(err => done(err));
   });
 
   it('returns empty when token is invalid', (done) => {
@@ -55,9 +51,7 @@ describe('getPublicUrl', () => {
 
     getPublicUrl(privateURL, invalidToken).then((publicUrl) => {
       expect(publicUrl).to.eql('');
-
-      done();
-    }).catch(err => done(err));
+    }).then(done).catch(err => done(err));
   });
 
   it('returns empty when token is absent', (done) => {
@@ -73,9 +67,7 @@ describe('getPublicUrl', () => {
 
     getPublicUrl(privateURL, emptyToken).then((publicUrl) => {
       expect(publicUrl).to.eql('');
-
-      done();
-    }).catch(err => done(err));
+    }).then(done).catch(err => done(err));
   });
 
   it('returns error message when something bad happens with slack API request', (done) => {
@@ -88,8 +80,6 @@ describe('getPublicUrl', () => {
 
     getPublicUrl(privateURL, emptyToken).then((publicUrl) => {
       expect(publicUrl).to.eql({ ok: false, error: 'Internal Server Error' });
-
-      done();
-    }).catch(err => done(err));
+    }).then(done).catch(err => done(err));
   });
 });
