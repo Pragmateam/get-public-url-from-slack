@@ -29,7 +29,7 @@ Then follow the steps below:
 3. Run:
 
 ```
-$ npm start {PRIVATE_URL}
+$ make run url={PRIVATE_URL}
 ```
 
 ### Testing
@@ -42,31 +42,7 @@ $ make test
 
 Assuming you have your AWS credentials [in
 place](https://www.terraform.io/intro/getting-started/build.html) you can just
-call `make deploy`.
-
-Before you go, you must install terraform.
-
-The backend configuration at `infrastructure/main.tf` is loaded by Terraform extremely early, before
-the core of Terraform can be initialized. This is necessary because the backend
-dictates the behavior of that core. The core is what handles interpolation
-processing. Because of this, interpolations cannot be used in backend
-configuration.
-
-More details backends are available at https://www.terraform.io/docs/backends
-
-You have to replace the bucket name in order to playaround with terraform.
-You'll have to export an environment variable with your s3 bucket, where will be
-stored your lambda function.
-
-```
-export GET_PUBLIC_URL_S3_BUCKET=yourbucket
-```
-
-```
-$ make terraform-install
-```
-
-Then you should be ready to deploy your lambda:
+call `make deploy` as follows:
 
 ```
 $ make deploy

@@ -29,7 +29,9 @@ const getPublicUrl = (privateUrl, token) => {
   const options = { token, file: getFileName(privateUrl) };
   const url = composeSharedPublicUrlWith(options);
 
-  const promisedRequest = httpGet(url).then((response) => {
+  const promisedRequest = httpGet(url).then(response => {
+    console.info('Slack API response:', response);
+
     if (response.ok) {
       return response.file.permalink_public;
     }

@@ -8,6 +8,11 @@ cache:
 notifications:
   email: false
 install:
-- npm install
+- make install
 script:
-- npm test
+- make test
+deploy:
+  provider: script
+  script: make deploy
+  on:
+    branch: master

@@ -1,13 +1,13 @@
 {
   "name": "get-public-url-from-slack",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Get public URL from slack",
   "main": "index.js",
   "scripts": {
     "autofix-lint": "eslint test/** src/** --fix",
     "pretest": "eslint test/** src/**",
     "test": "mocha --recursive",
-    "start": "lambda-local -l index.js -h handler -e event-samples/privateUrl.js"
+    "start": "node example/local.js"
   },
   "keywords": [
     "slack",
@@ -18,14 +18,17 @@
   "license": "MIT",
   "devDependencies": {
     "chai": "^3.5.0",
+    "claudia": "^2.11.0",
     "eslint": "^3.18.0",
     "eslint-config-airbnb-base": "^11.1.2",
     "eslint-config-standard": "^7.1.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^2.1.1",
-    "lambda-local": "^1.4.2",
     "mocha": "^3.2.0",
     "nock": "^9.0.10"
+  },
+  "dependencies": {
+    "claudia-api-builder": "^2.4.1"
   }
 }
