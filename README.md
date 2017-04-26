@@ -1,7 +1,10 @@
 # get-public-url-from-slack
 
-[![Build
-Status](https://travis-ci.org/Pragmateam/get-public-url-from-slack.svg?branch=master)](https://travis-ci.org/Pragmateam/get-public-url-from-slack)
+<p align="center">
+  <img src="https://img.shields.io/travis/Pragmateam/get-public-url-from-slack.svg" alt="travis">
+  <img src="https://img.shields.io/github/license/Pragmateam/get-public-url-from-slack.svg" alt="license">
+  <img src="https://img.shields.io/codeclimate/github/Pragmateam/get-public-url-from-slack.svg" alt="codeclimate score">
+</p>
 
 Given a private url from slack, this code will return it's public link.
 
